@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
+import { vazir } from "@/styles/fonts";
+import "../styles/global.css"
 
 export const metadata: Metadata = {
   title:
@@ -14,7 +16,7 @@ export default function RootLayout({
   readonly children: ReactNode;
 }) {
   return (
-    <html lang="fa" dir={"rtl"}>
+    <html lang="fa" dir={"rtl"} className={vazir.className}>
       <body className="min-h-full">{children}</body>
     </html>
   );
