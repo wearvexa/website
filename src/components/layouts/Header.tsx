@@ -43,6 +43,7 @@ const Header = () => {
         </form>
 
         <div className={"h-full flex items-center justify-center gap-3"}>
+          <a className={"ml-6 text-[15px] text-gray-600"} href="tel:09332621196">نیاز به راهنمایی دارید؟ {toPersianDigits("09030422838")}</a>
           <button
             className={
               "relative bg-gray-100 size-12 w-13 rounded-lg flex justify-center items-center cursor-pointer transition-all duration-100 active:scale-95"
