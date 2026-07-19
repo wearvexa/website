@@ -1,5 +1,11 @@
-import HomePage from "@/features/home/pages/HomePage";
+import HomeSection from "@/features/home/sections/HomeSection";
 
-const Page = () => <HomePage />
+const Page = () => {
+  return (
+    <>
+      <HomeSection />
+    </>
+  );
+};
 
 export default Page;
