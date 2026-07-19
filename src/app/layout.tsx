@@ -102,7 +102,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fa" dir="rtl" className={vazir.className}>
-      <body>{children}</body>
+      <body className={"container relative"}>{children}</body>
     </html>
   );
 }

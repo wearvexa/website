@@ -18,8 +18,6 @@
 
 @layer utilities {
     .container {
-        width: 100%;
-        max-width: 1240px;
-        margin: 0 auto;
+        @apply w-full max-w-[720px] sm:border-x mx-auto min-h-screen;
     }
 }
