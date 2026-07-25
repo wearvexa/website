@@ -1,16 +1,16 @@
-"use client";
-
 import Header from "@/components/layouts/Header";
 import Footer from "@/components/layouts/Footer";
 import { ReactNode } from "react";
+import { getMenus } from "@/lib/api/mutations/menu";
+import { Menu } from "@/types/menu";
 
-const Layout = ({ children } : { children: ReactNode }) => {
+const Layout = async ({ children }: { children: ReactNode }) => {
+  const { data: menus }: { data: Menu[] } = await getMenus()
+
   return (
     <>
-      <Header />
-      <main>
-        {children}
-      </main>
+      <Header menus={menus} />
+      <main>{children}</main>
       <Footer />
     </>
   );

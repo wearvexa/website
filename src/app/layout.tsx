@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { vazir } from "@/styles/fonts";
 import "../styles/global.css";
-import AOSProvider from "@/providers/AOSProvider";
 
 const siteName = "وکسا";
 const url = "https://vexa-eight-liard.vercel.app";
@@ -104,7 +103,6 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl" className={vazir.className}>
       <body className={"container relative"}>
-        <AOSProvider />
         {children}
       </body>
     </html>

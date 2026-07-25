@@ -9,18 +9,14 @@ const HomeSection = () => {
   return (
     <section className={"px-5 mt-14 flex flex-col items-center gap-6"}>
       <Image
-        data-aos="fade-left"
-        data-aos-duration="700"
         src={Logo}
         alt={""}
-        loading={"eager"}
-        quality={100}
+        preload
         width={320}
+        height={100}
       />
       <div
         className={"mt-1.5 w-full flex justify-between items-center px-15"}
-        data-aos="fade-down"
-        data-aos-duration="700"
       >
         <span className={"text-black text-2xl font-light"}>کالکشن جدید</span>
         <a
