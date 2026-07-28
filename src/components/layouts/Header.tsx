@@ -8,6 +8,7 @@ import { Menu, MenuItem } from "@/types/menu";
 import DynamicIcon from "@/components/DynamicIcon";
 import { useEffect, useState } from "react";
 import Vexa from "@public/logo/typography-bold-black.png";
+import { usePathname } from "next/navigation";
 
 const MenuItemRow = ({
   item,
@@ -82,6 +83,11 @@ const MenuItemRow = ({
 const Header = ({ menus }: { menus: Menu[] }) => {
   const header_menu = menus.find((i) => i.name === "header_menu");
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname()
+
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "auto";
@@ -102,7 +108,7 @@ const Header = ({ menus }: { menus: Menu[] }) => {
       </header>
 
       <div
-        className={`fixed top-0 right-0 bg-white z-10 w-screen h-screen flex justify-center items-center px-10 flex-col gap-4 transition-all duration-300 ${
+        className={`fixed z-100 top-0 right-0 bg-white w-screen h-screen flex justify-center items-center px-10 flex-col gap-4 transition-all duration-300 ${
           menuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
@@ -118,6 +124,7 @@ const Header = ({ menus }: { menus: Menu[] }) => {
         </button>
 
         <Image src={Vexa} alt={""} height={60} className={"mb-6"} />
+
         {header_menu?.items?.map((item) => (
           <MenuItemRow key={item.id} item={item} />
         ))}

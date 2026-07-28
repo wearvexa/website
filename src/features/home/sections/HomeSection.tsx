@@ -29,7 +29,7 @@ const HomeSection = () => {
         </a>
       </div>
       <div className={"grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4"}>
-        <a href={"/products"} className={"rounded-xl h-53"}>
+        <a href={"/shop"} className={"rounded-xl h-53"}>
           <Image
             src={Model_1}
             alt="vexa model one"
@@ -39,7 +39,7 @@ const HomeSection = () => {
             data-aos-delay="500"
           />
         </a>
-        <a href={"/products"} className={"rounded-xl h-53"}>
+        <a href={"/shop"} className={"rounded-xl h-53"}>
           <Image
             src={Model_2}
             alt="vexa model one"
@@ -49,7 +49,7 @@ const HomeSection = () => {
             data-aos-delay="550"
           />
         </a>
-        <a href={"/products"} className={"rounded-xl h-53 hidden sm:inline"}>
+        <a href={"/shop"} className={"rounded-xl h-53 hidden sm:inline"}>
           <Image
             src={Model_3}
             alt="vexa model one"
