@@ -12,12 +12,12 @@ const HomeSection = () => {
         src={Logo}
         alt={""}
         preload
-        width={320}
-        height={100}
+        style={{
+          width: "320px",
+          height: "auto",
+        }}
       />
-      <div
-        className={"mt-1.5 w-full flex justify-between items-center px-15"}
-      >
+      <div className={"mt-1.5 w-full flex justify-between items-center px-15"}>
         <span className={"text-black text-2xl font-light"}>کالکشن جدید</span>
         <a
           href={"#"}
@@ -34,9 +34,7 @@ const HomeSection = () => {
             src={Model_1}
             alt="vexa model one"
             className={"size-full object-cover rounded-lg"}
-            data-aos="fade-left"
-            data-aos-duration="700"
-            data-aos-delay="500"
+            loading={"lazy"}
           />
         </a>
         <a href={"/shop"} className={"rounded-xl h-53"}>
@@ -44,9 +42,7 @@ const HomeSection = () => {
             src={Model_2}
             alt="vexa model one"
             className={"size-full object-cover rounded-lg"}
-            data-aos="fade-left"
-            data-aos-duration="700"
-            data-aos-delay="550"
+            loading={"lazy"}
           />
         </a>
         <a href={"/shop"} className={"rounded-xl h-53 hidden sm:inline"}>
@@ -54,9 +50,6 @@ const HomeSection = () => {
             src={Model_3}
             alt="vexa model one"
             className={"size-full object-cover rounded-lg"}
-            data-aos="fade-left"
-            data-aos-duration="700"
-            data-aos-delay="600"
           />
         </a>
       </div>
