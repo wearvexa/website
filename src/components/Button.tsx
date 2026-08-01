@@ -104,7 +104,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={isDisabled}
         className={clsx(
           "inline-flex items-center justify-center font-medium",
-          "transition-all duration-150",
+          "transition-all duration-100!",
           "active:scale-[0.98]",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2",
           "dark:focus-visible:ring-white dark:focus-visible:ring-offset-neutral-950",

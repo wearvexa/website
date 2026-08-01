@@ -1,60 +1,88 @@
 "use client";
 
-import { ChevronDown, MenuIcon, X } from "lucide-react";
+import { MenuIcon, X } from "lucide-react";
 import Image from "next/image";
 import Logo from "@public/logo/typography-black.png";
+import Vexa from "@public/logo/typography-bold-black.png";
 import Link from "next/link";
 import { Menu, MenuItem } from "@/types/menu";
 import DynamicIcon from "@/components/DynamicIcon";
 import { useEffect, useState } from "react";
-import Vexa from "@public/logo/typography-bold-black.png";
 import { usePathname } from "next/navigation";
+
+const SubItem = ({ item, active }: { item: MenuItem; active: boolean }) => (
+  <Link
+    href={item.url ?? "/"}
+    className={`block py-2.5 px-4 text-sm transition-colors rounded-lg ${
+      active
+        ? "bg-gray-50 text-black font-medium"
+        : "text-gray-500 hover:text-black hover:bg-gray-50"
+    }`}
+  >
+    {item.title}
+  </Link>
+);
 
 const MenuItemRow = ({
   item,
-  depth = 0,
+  pathname,
 }: {
   item: MenuItem;
-  depth?: number;
+  pathname: string;
 }) => {
   const [open, setOpen] = useState(false);
   const hasChildren = !!item.children?.length;
+  const active = item.url === pathname;
 
   return (
-    <div className={"w-full"}>
-      <div
-        className={
-          "group w-full flex items-stretch rounded-[10px] border border-gray-300 bg-white overflow-hidden transition-all duration-200 hover:border-gray-600 hover:shadow-sm"
-        }
-      >
+    <div className="w-full">
+      <div className="flex items-center justify-between">
         <Link
-          href={item.url ?? "/"}
-          className={
-            "flex-1 flex gap-3 items-center px-4 py-3 text-[15px] text-gray-800 group-hover:text-gray-950 active:scale-[0.99] transition-all duration-150"
+          href={hasChildren ? "#" : (item.url ?? "/")}
+          onClick={
+            hasChildren
+              ? (e) => {
+                  e.preventDefault();
+                  setOpen((p) => !p);
+                }
+              : undefined
           }
+          className="group flex flex-1 items-center gap-3 py-4"
         >
           {item.icon && (
-            <span className="flex size-8 items-center justify-center rounded-lg bg-gray-100 text-gray-700 group-hover:bg-gray-600 group-hover:text-white transition-colors duration-200">
-              <DynamicIcon name={item.icon} className={"size-4"} />
-            </span>
+            <DynamicIcon
+              name={item.icon}
+              className={`size-5 shrink-0 transition-colors ${
+                active ? "text-black" : "text-gray-400 group-hover:text-black"
+              }`}
+            />
           )}
-          <span className="font-medium">{item.title}</span>
+          <span
+            className={`text-base transition-colors ${
+              active
+                ? "font-semibold text-black"
+                : "text-gray-700 group-hover:text-black"
+            }`}
+          >
+            {item.title}
+          </span>
         </Link>
 
         {hasChildren && (
           <button
-            onClick={() => setOpen((prev) => !prev)}
-            aria-label="toggle submenu"
-            className={
-              "w-12 flex justify-center items-center border-r border-gray-300 shrink-0 cursor-pointer text-gray-500 hover:bg-gray-50 active:bg-gray-100 transition-colors"
-            }
+            onClick={() => setOpen((p) => !p)}
+            aria-label="نمایش زیرمنو"
+            aria-expanded={open}
+            className="flex size-8 shrink-0 items-center justify-center rounded-md bg-gray-50 text-gray-500 transition-colors hover:bg-gray-100 hover:text-black"
           >
-            <ChevronDown
-              size={18}
-              className={`transition-transform duration-300 ${
-                open ? "rotate-180 text-gray-600" : ""
-              }`}
-            />
+            <span className="relative block size-2.5">
+              <span className="absolute top-1/2 left-0 h-[1.5px] w-full -translate-y-1/2 bg-current rounded-full" />
+              <span
+                className={`absolute top-0 left-1/2 h-full w-[1.5px] -translate-x-1/2 bg-current rounded-full transition-transform duration-300 ${
+                  open ? "scale-y-0" : "scale-y-100"
+                }`}
+              />
+            </span>
           </button>
         )}
       </div>
@@ -63,14 +91,18 @@ const MenuItemRow = ({
         <div
           className={`grid transition-all duration-300 ease-out ${
             open
-              ? "grid-rows-[1fr] opacity-100 mt-2"
+              ? "grid-rows-[1fr] opacity-100 mb-2"
               : "grid-rows-[0fr] opacity-0"
           }`}
         >
           <div className="overflow-hidden">
-            <div className="flex flex-col gap-2 pr-4 border-r-2 border-gray-100 mr-4">
+            <div className="mr-6 flex flex-col gap-1 border-r-2 border-gray-100 pr-3">
               {item.children!.map((child) => (
-                <MenuItemRow key={child.id} item={child} depth={depth + 1} />
+                <SubItem
+                  key={child.id}
+                  item={child}
+                  active={child.url === pathname}
+                />
               ))}
             </div>
           </div>
@@ -83,59 +115,86 @@ const MenuItemRow = ({
 const Header = ({ menus }: { menus: Menu[] }) => {
   const header_menu = menus.find((i) => i.name === "header_menu");
   const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   useEffect(() => {
-    setMenuOpen(false)
+    setMenuOpen(false);
   }, [pathname]);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "auto";
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuOpen]);
 
   return (
     <>
-      <header className={"h-18 flex justify-between items-center px-5"}>
+      <header className="flex py-4.5 items-center justify-between px-6 bg-white">
         <button
           onClick={() => setMenuOpen(true)}
-          className={
-            "size-10 bg-gray-100 flex active:scale-95 justify-center items-center rounded-lg transition-all duration-100 cursor-pointer"
-          }
+          aria-label="باز کردن منو"
+          className="flex size-11 cursor-pointer items-center justify-center rounded-xl bg-gray-50/80 text-gray-800 transition-all hover:bg-gray-100 active:scale-95"
         >
-          <MenuIcon className="text-gray-600" size={20} />
+          <MenuIcon size={22} strokeWidth={1.5} />
         </button>
-        <Link href={"/"}>
+
+        <Link href="/" className="flex items-center">
           <Image
             src={Logo}
-            alt={"Vexa logo"}
-            width={85}
-            className={"h-auto"}
-            loading={"lazy"}
+            alt="Vexa logo"
+            width={70}
+            className="h-auto object-contain"
+            loading="lazy"
           />
         </Link>
       </header>
 
       <div
-        className={`fixed z-100 top-0 right-0 bg-white w-screen h-screen flex justify-center items-center px-10 flex-col gap-4 transition-all duration-300 ${
-          menuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-100 flex flex-col bg-white transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <button
-          onClick={() => setMenuOpen(false)}
-          className={
-            "absolute top-5 left-6 size-10 bg-gray-100 flex active:scale-95 justify-center items-center rounded-lg transition-all duration-100 cursor-pointer"
-          }
-        >
-          <X className="text-gray-600" size={20} />
-        </button>
+        <div className="flex h-20 shrink-0 items-center justify-between px-6 border-b border-gray-50">
+          <Image
+            src={Vexa}
+            alt="Vexa"
+            height={24}
+            className="w-auto object-contain"
+          />
 
-        <Image src={Vexa} alt={""} height={60} className={"mb-6"} />
+          <button
+            onClick={() => setMenuOpen(false)}
+            aria-label="بستن منو"
+            className="flex size-11 cursor-pointer items-center justify-center rounded-xl bg-gray-50/80 text-gray-800 transition-all hover:bg-gray-100 active:scale-95"
+          >
+            <X size={22} strokeWidth={1.5} />
+          </button>
+        </div>
 
-        {header_menu?.items?.map((item) => (
-          <MenuItemRow key={item.id} item={item} />
-        ))}
+        <nav className="flex-1 overflow-y-auto px-6 py-4">
+          <div className="flex flex-col">
+            {header_menu?.items?.map((item, i) => (
+              <div
+                key={item.id}
+                style={{
+                  transitionDelay: menuOpen ? `${i * 50 + 100}ms` : "0ms",
+                }}
+                className={`border-b border-gray-50 transition-all duration-500 ease-out last:border-0 ${
+                  menuOpen
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-4 opacity-0"
+                }`}
+              >
+                <MenuItemRow item={item} pathname={pathname} />
+              </div>
+            ))}
+          </div>
+        </nav>
       </div>
     </>
   );

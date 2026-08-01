@@ -1,15 +1,15 @@
 "use client";
 
 import Form from "@/components/form/Form";
-import { NumberField } from "@/components/form/fields/NumberField";
 import { Button } from "@/components/Button";
 import Logo from "@public/android-chrome-192x192.png";
 import Image from "next/image";
 import { passwordLoginSchema } from "@/validations/schemas/auth/login-schema";
+import { MobileField } from "@/components/form/fields/MobileField";
 
 const LoginSection = () => {
   return (
-    <main className="flex min-h-svh flex-col items-center justify-center bg-white px-6">
+    <main className="flex mt-30 mb-45 flex-col items-center justify-center bg-white px-6">
       <div className="w-full max-w-sm space-y-8">
         <div className="space-y-1 text-center">
           <Image src={Logo} alt={""} className={"size-20 block mx-auto mb-2"} />
@@ -26,10 +26,10 @@ const LoginSection = () => {
           onSubmit={(e) => console.log(e)}
           className="space-y-4"
         >
-          <NumberField
+          <MobileField
             name="mobile"
             label="شماره موبایل"
-            placeholder="09xxxxxxxxx"
+            placeholder="۰۹xxxxxxxxx"
             required
             inputMode="tel"
             maxLength={11}
