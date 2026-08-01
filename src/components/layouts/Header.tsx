@@ -104,7 +104,15 @@ const Header = ({ menus }: { menus: Menu[] }) => {
         >
           <MenuIcon className="text-gray-600" size={20} />
         </button>
-        <Image src={Logo} alt={"Vexa logo"} width={85} className={"h-auto"} loading={"lazy"} />
+        <Link href={"/"}>
+          <Image
+            src={Logo}
+            alt={"Vexa logo"}
+            width={85}
+            className={"h-auto"}
+            loading={"lazy"}
+          />
+        </Link>
       </header>
 
       <div
