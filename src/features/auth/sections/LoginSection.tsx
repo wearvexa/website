@@ -4,10 +4,15 @@ import Form from "@/components/form/Form";
 import { Button } from "@/components/Button";
 import Logo from "@public/android-chrome-192x192.png";
 import Image from "next/image";
-import { passwordLoginSchema } from "@/validations/schemas/auth/login-schema";
+import {
+  loginSchema,
+} from "@/validations/schemas/auth/login-schema";
 import { MobileField } from "@/components/form/fields/MobileField";
+import { useLoginSection } from "@/features/auth/hook/LoginSection.hook";
 
 const LoginSection = () => {
+  const {handleSubmit} = useLoginSection()
+
   return (
     <main className="flex mt-30 mb-45 flex-col items-center justify-center bg-white px-6">
       <div className="w-full max-w-sm space-y-8">
@@ -22,8 +27,8 @@ const LoginSection = () => {
         </div>
 
         <Form
-          schema={passwordLoginSchema}
-          onSubmit={(e) => console.log(e)}
+          schema={loginSchema}
+          onSubmit={handleSubmit}
           className="space-y-4"
         >
           <MobileField

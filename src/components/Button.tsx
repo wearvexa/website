@@ -1,8 +1,9 @@
 "use client";
 
-import { ButtonHTMLAttributes, ReactNode, forwardRef } from "react";
+import { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
 import { Loader2 } from "lucide-react";
 import { clsx } from "clsx";
+import { useFormContext } from "react-hook-form";
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "danger" | "link";
 type ButtonSize = "sm" | "md" | "lg";
@@ -96,7 +97,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
-    const isDisabled = disabled || loading;
+    const frm = useFormContext<FormData>();
+
+    const isDisabled = frm?.formState?.isSubmitting || disabled || loading;
 
     return (
       <button
@@ -117,7 +120,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {...props}
       >
-        {loading ? (
+        {loading || frm?.formState?.isSubmitting ? (
           <Loader2 className={clsx("animate-spin", iconSizeStyles[size])} />
         ) : leftIcon ? (
           <span className={clsx("shrink-0", iconSizeStyles[size])}>
@@ -126,12 +129,18 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ) : null}
 
         {children && (
-          <span className={loading ? "opacity-0 absolute" : undefined}>
+          <span
+            className={
+              loading || frm?.formState?.isSubmitting
+                ? "opacity-0 absolute"
+                : undefined
+            }
+          >
             {children}
           </span>
         )}
 
-        {!loading && rightIcon && (
+        {(!loading || !frm?.formState?.isSubmitting) && rightIcon && (
           <span className={clsx("shrink-0", iconSizeStyles[size])}>
             {rightIcon}
           </span>

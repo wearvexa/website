@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { mobileNumberField } from "@/validations/fields";
 
-export const passwordLoginSchema = z.object({
+export const loginSchema = z.object({
   mobile: mobileNumberField,
 });
 
-export type PasswordLoginSchema = z.infer<typeof passwordLoginSchema>;
+export type LoginSchema = z.infer<typeof loginSchema>;

@@ -18,6 +18,6 @@
 
 @layer utilities {
     .container {
-        @apply w-full max-w-[720px] sm:border-x mx-auto min-h-screen;
+        @apply w-full max-w-180 sm:border-x mx-auto min-h-screen;
     }
 }
