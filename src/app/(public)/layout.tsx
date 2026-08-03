@@ -22,7 +22,6 @@ const Layout = async ({ children }: { children: ReactNode }) => {
       <Footer menus={menus} />
       <ActionBar />
       <Toaster
-        duration={30000000}
         position="top-center"
         style={{ fontFamily: "inherit" }}
         dir={"rtl"}

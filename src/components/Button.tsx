@@ -71,7 +71,7 @@ const variantStyles: Record<ButtonVariant, string> = {
 
 const sizeStyles: Record<ButtonSize, string> = {
   sm: "h-9 px-3.5 text-xs rounded-xl gap-1.5",
-  md: "h-11 px-5 text-sm rounded-2xl gap-2",
+  md: "h-11.5 px-5 text-sm rounded-2xl gap-2",
   lg: "h-14 px-7 text-base rounded-2xl gap-2.5",
 };
 
@@ -106,7 +106,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={isDisabled}
         className={clsx(
-          "inline-flex items-center justify-center font-medium",
+          "inline-flex items-center justify-center font-medium cursor-pointer",
           "transition-all duration-100!",
           "active:scale-[0.98]",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2",

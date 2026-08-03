@@ -4,13 +4,11 @@ import { useField } from "./_base/useField";
 
 interface CheckBoxFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  icon?: string;
   label?: string;
 }
 
 export const CheckBoxField = ({
   name,
-  icon,
   className,
   label,
   ...props
@@ -25,7 +23,6 @@ export const CheckBoxField = ({
           type={"checkbox"}
           className={clsx(
             "ava-checkbox",
-            icon && "ps-10",
             error && "border-red-400!",
             className,
           )}
