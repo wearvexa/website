@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - tikrack
+      - main
 
 jobs:
   deploy:
@@ -20,4 +20,4 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            cd ${{ secrets.SERVER_PATH }} && git restore . && git pull && bun i && npm run build
+            cd ${{ secrets.SERVER_PATH }} && git restore . && git pull && bun i && npm run build && pm2 restart vexa-website
