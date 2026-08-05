@@ -1,16 +1,14 @@
 import axios, {
-  AxiosInstance,
   AxiosError,
-  InternalAxiosRequestConfig,
+  AxiosInstance,
   AxiosRequestConfig,
+  InternalAxiosRequestConfig,
 } from "axios";
 import { toast } from "sonner";
 import { clearTokens, getAccessToken } from "@services/token-service";
-import {URL} from "@/configs/app"
+import { URL } from "@/configs/app";
 
-const BASE_URL: string = (
-  URL.BASE
-).replace(/\/+$/, "");
+const BASE_URL: string = URL.BASE.replace(/\/+$/, "");
 
 const apiClient: AxiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -67,7 +65,14 @@ apiClient.interceptors.response.use(
     const status = err.response?.status;
     const responseData = err.response?.data;
 
+    const AllowErrors = ["/auth/me"];
+
+    if (AllowErrors.includes(err.config?.url ?? "")) {
+      return Promise.reject(err);
+    }
+
     if (status === 401) {
+      console.log(err.config?.url);
       clearTokens();
       location.href = "/login";
       return Promise.reject(err);

@@ -18,11 +18,12 @@ const Layout = async ({ children }: { children: ReactNode }) => {
   return (
     <>
       <SettingInitializer settings={settings} />
-      <MeInitializer />
-      <Header menus={menus} />
-      <main>{children}</main>
-      <Footer menus={menus} />
-      <ActionBar />
+      <MeInitializer>
+        <Header menus={menus} />
+        <main>{children}</main>
+        <Footer menus={menus} />
+        <ActionBar />
+      </MeInitializer>
       <Toaster
         position="top-center"
         style={{ fontFamily: "inherit" }}

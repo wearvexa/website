@@ -2,18 +2,27 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, LayoutGrid, Heart, ShoppingBag, User } from "lucide-react";
-
-const items = [
-  { href: "/", label: "خانه", icon: Home },
-  { href: "/shop", label: "فروشگاه", icon: LayoutGrid },
-  { href: "/wishlist", label: "علاقه‌مندی", icon: Heart },
-  { href: "/cart", label: "سبد", icon: ShoppingBag },
-  { href: "/login", label: "حساب", icon: User },
-];
+import { Heart, Home, LayoutGrid, ShoppingBag, User } from "lucide-react";
+import { MeStatus, useMeStore } from "@/stores/useMeStore";
 
 const ActionBar = () => {
   const pathname = usePathname();
+  const { me } = useMeStore();
+
+  const profileOrLogin = () => {
+    if (me) {
+      return { href: "/profile", label: "حساب کاربری", icon: User }
+    }
+    return { href: "/login", label: "حساب کاربری", icon: User };
+  }
+
+  const items = [
+    { href: "/", label: "خانه", icon: Home },
+    { href: "/shop", label: "فروشگاه", icon: LayoutGrid },
+    { href: "/wishlist", label: "علاقه‌مندی", icon: Heart },
+    { href: "/cart", label: "سبد", icon: ShoppingBag },
+    profileOrLogin(),
+  ];
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
