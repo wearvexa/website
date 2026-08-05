@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { vazir } from "@/styles/fonts";
 import "../styles/global.css";
+import { Toaster } from "sonner";
+import MeInitializer from "@/providers/MeInitializer";
 
 const siteName = "وکسا";
 const url = "https://vexa-eight-liard.vercel.app";
@@ -103,7 +105,20 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl" className={vazir.className}>
       <body className={"container relative"}>
-        {children}
+        <MeInitializer>{children}</MeInitializer>
+        <Toaster
+          position="top-center"
+          style={{ fontFamily: "inherit" }}
+          dir={"rtl"}
+          richColors
+          closeButton
+          toastOptions={{
+            classNames: {
+              toast: "rounded-[18px]! font-light! text-sm!",
+              title: "text-[13px]! font-normal!",
+            },
+          }}
+        />
       </body>
     </html>
   );

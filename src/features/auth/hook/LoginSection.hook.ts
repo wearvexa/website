@@ -1,10 +1,11 @@
 import { LoginSchema } from "@/validations/schemas/auth/login-schema";
 import api from "@/lib/api";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { VerifySchema } from "@/validations/schemas/auth/verify-schema";
 import { setAccessToken } from "@services/token-service";
 import { useRouter } from "next/navigation";
+import { useMeStore } from "@/stores/useMeStore";
 
 export enum LoginStep {
   SendOtp,
@@ -15,6 +16,13 @@ const useLoginSection = () => {
   const [step, setStep] = useState<LoginStep>(LoginStep.SendOtp);
   const [token, setToken] = useState("");
   const router = useRouter();
+  const me = useMeStore(state => state.me);
+
+  useEffect(() => {
+    if (me !== null) {
+      router.replace("/profile");
+    }
+  }, [me])
 
   const handleSubmit = async (e: LoginSchema | VerifySchema) => {
     switch (step) {
