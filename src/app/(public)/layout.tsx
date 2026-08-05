@@ -7,6 +7,7 @@ import { Menu } from "@/types/menu";
 import { SettingItem } from "@/types/setting";
 import SettingInitializer from "@/providers/SettingInitializer";
 import { Toaster } from "sonner";
+import MeInitializer from "@/providers/MeInitializer";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const {
@@ -17,6 +18,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
   return (
     <>
       <SettingInitializer settings={settings} />
+      <MeInitializer />
       <Header menus={menus} />
       <main>{children}</main>
       <Footer menus={menus} />
