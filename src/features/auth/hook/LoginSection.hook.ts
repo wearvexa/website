@@ -3,7 +3,7 @@ import api from "@/lib/api";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { VerifySchema } from "@/validations/schemas/auth/verify-schema";
-import { setAccessToken } from "@services/token-service";
+import { getAccessToken, setAccessToken } from "@services/token-service";
 import { useRouter } from "next/navigation";
 import { useMeStore } from "@/stores/useMeStore";
 
@@ -19,7 +19,7 @@ const useLoginSection = () => {
   const me = useMeStore(state => state.me);
 
   useEffect(() => {
-    if (me !== null) {
+    if (me !== null && getAccessToken()) {
       router.replace("/profile");
     }
   }, [me])
@@ -46,7 +46,7 @@ const useLoginSection = () => {
         try {
           const response = await api.post<{
             access_token: string;
-            is_profile_complete: boolean;
+            is_profile_completed: boolean;
           }>("/auth/otp/verify", e);
 
           if (response.message) {
@@ -55,11 +55,10 @@ const useLoginSection = () => {
 
           setAccessToken(response?.data?.access_token);
 
-          if (!response?.data?.is_profile_complete) {
+          if (!response?.data?.is_profile_completed) {
             router.replace("/complete-profile");
-          }else {
-            router.replace("/profile");
-            router.refresh();
+          } else {
+            window.location.href = "/profile";
           }
         } finally {
         }

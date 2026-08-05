@@ -3,10 +3,9 @@ import { CompleteProfileSchema } from "@/validations/schemas/auth/complete-profi
 import api from "@/lib/api";
 import { toast } from "sonner";
 import objectToFormData from "@/lib/objectToFormData";
+import { useMeStore } from "@/stores/useMeStore";
 
 const useCompleteProfileSection = () => {
-  const router = useRouter();
-
   const handleSubmit = async (e: CompleteProfileSchema) => {
     try {
       const response = await api.put("/auth/me", objectToFormData(e));
@@ -15,7 +14,7 @@ const useCompleteProfileSection = () => {
         toast.success(response.message);
       }
 
-      router.push("/profile");
+      window.location.href = "/profile";
     } finally {
     }
   };
