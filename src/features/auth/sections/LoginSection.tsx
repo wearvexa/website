@@ -46,11 +46,8 @@ const LoginSection = () => {
             schema={verifySchema}
             onSubmit={handleSubmit}
             className="space-y-4"
-            defaultValues={{
-              "token": token
-            }}
           >
-            <input type={"hidden"} name={"token"}/>
+            <HiddenField name={"token"} value={token} />
             <MobileField
               name="code"
               label="کد تایید"
