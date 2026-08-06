@@ -1,13 +1,10 @@
 "use client";
 
 import {
-  ArrowRight,
-  ChevronDown,
   ChevronLeft,
   LogOut,
   MessageCircleMore,
   PenLine,
-  Reply,
   ShoppingBasket,
 } from "lucide-react";
 import { toPersianDigits } from "@/lib/toPersianDigits";
@@ -22,10 +19,10 @@ const ProfileSection = () => {
   const router = useRouter();
 
   const handleLogout = () => {
-    clearTokens()
-    clearMe()
-    router.replace("/login")
-    router.refresh()
+    clearTokens();
+    clearMe();
+    router.replace("/login");
+    router.refresh();
   };
 
   return (

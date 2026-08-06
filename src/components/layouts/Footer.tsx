@@ -7,8 +7,11 @@ import { toPersianDigits } from "@/lib/toPersianDigits";
 import { Menu } from "@/types/menu";
 import Link from "next/link";
 import { useSettingStore } from "@/stores/useSettingStore";
+import { useMenuStore } from "@/stores/useMenuStore";
 
-const Footer = ({ menus }: { menus: Menu[] }) => {
+const Footer = () => {
+  const menus = useMenuStore((state) => state.menus);
+
   const footer_menu = menus.find((i) => i.name === "footer_menu");
 
   const getSetting = useSettingStore(s => s.getSetting)

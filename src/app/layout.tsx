@@ -4,6 +4,12 @@ import { vazir } from "@/styles/fonts";
 import "../styles/global.css";
 import { Toaster } from "sonner";
 import MeInitializer from "@/providers/MeInitializer";
+import { getMainLayout } from "@/lib/api/mutations/main-layout";
+import { Menu } from "@/types/menu";
+import { SettingItem } from "@/types/setting";
+import Header from "@/components/layouts/Header";
+import SettingInitializer from "@/providers/SettingInitializer";
+import MenuInitializer from "@/providers/MenuInitializer";
 
 const siteName = "وکسا";
 const url = "https://vexa-eight-liard.vercel.app";
@@ -97,14 +103,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   readonly children: ReactNode;
 }) {
+  const {
+    data: { menus, settings },
+  }: { data: { menus: Menu[]; settings: SettingItem[] } } =
+    await getMainLayout();
+
   return (
     <html lang="fa" dir="rtl" className={vazir.className}>
       <body className={"container relative"}>
+        <SettingInitializer settings={settings} />
+        <MenuInitializer menus={menus} />
         <MeInitializer>{children}</MeInitializer>
         <Toaster
           position="top-center"

@@ -9,6 +9,7 @@ import { Menu, MenuItem } from "@/types/menu";
 import DynamicIcon from "@/components/DynamicIcon";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useMenuStore } from "@/stores/useMenuStore";
 
 const SubItem = ({ item, active }: { item: MenuItem; active: boolean }) => (
   <Link
@@ -112,7 +113,9 @@ const MenuItemRow = ({
   );
 };
 
-const Header = ({ menus }: { menus: Menu[] }) => {
+const Header = () => {
+  const menus = useMenuStore((state) => state.menus);
+
   const header_menu = menus.find((i) => i.name === "header_menu");
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();

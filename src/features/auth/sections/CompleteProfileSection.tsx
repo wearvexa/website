@@ -11,7 +11,7 @@ const CompleteProfileSection = () => {
   const { handleSubmit } = useCompleteProfileSection();
 
   return (
-    <main className="flex mt-30 mb-45 flex-col items-center justify-center bg-white px-6">
+    <main className="flex mt-25 mb-45 flex-col items-center justify-center bg-white px-6">
       <div className="w-full max-w-sm space-y-8">
         <div className="space-y-1 text-center">
           <h1 className="text-2xl font-extrabold tracking-tight text-neutral-900">

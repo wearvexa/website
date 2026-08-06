@@ -20,7 +20,7 @@ const ActionBar = () => {
     { href: "/", label: "خانه", icon: Home },
     { href: "/shop", label: "فروشگاه", icon: LayoutGrid },
     { href: "/wishlist", label: "علاقه‌مندی", icon: Heart },
-    { href: "/cart", label: "سبد", icon: ShoppingBag },
+    { href: "/cart", label: "سبد خرید", icon: ShoppingBag },
     profileOrLogin(),
   ];
 
