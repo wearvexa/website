@@ -18,9 +18,10 @@ const Header = () => {
         </button>
       </div>
       <div className={"flex items-center"}>
-        <h4 className={"font-medium flex gap-2 text-gray-800"}>
-          <UserCog />
-          {`${me?.first_name} ${me?.last_name ?? ""}`}</h4>
+        <h4 className={"font-medium flex gap-2 text-gray-800 text-sm"}>
+          <UserCog size={20} />
+          {`${me?.first_name} ${me?.last_name ?? ""}`}
+        </h4>
       </div>
     </header>
   );
