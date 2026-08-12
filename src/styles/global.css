@@ -17,7 +17,12 @@
 }
 
 @layer utilities {
-    .container {
+    .container:not(:has(.no-container)) {
         @apply w-full max-w-180 sm:border-x mx-auto min-h-screen;
+    }
+
+    .container:has(.no-container) {
+        max-width: none !important;
+        @apply w-full mx-auto;
     }
 }

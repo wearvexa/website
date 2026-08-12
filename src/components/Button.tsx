@@ -77,7 +77,7 @@ const sizeStyles: Record<ButtonSize, string> = {
 
 const iconSizeStyles: Record<ButtonSize, string> = {
   sm: "size-3.5",
-  md: "size-4",
+  md: "size-5",
   lg: "size-5",
 };
 
@@ -123,7 +123,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {loading || frm?.formState?.isSubmitting ? (
           <Loader2 className={clsx("animate-spin", iconSizeStyles[size])} />
         ) : leftIcon ? (
-          <span className={clsx("shrink-0", iconSizeStyles[size])}>
+          <span className={clsx("shrink-0 flex justify-center items-center", iconSizeStyles[size])}>
             {leftIcon}
           </span>
         ) : null}
@@ -141,7 +141,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
 
         {(!loading || !frm?.formState?.isSubmitting) && rightIcon && (
-          <span className={clsx("shrink-0", iconSizeStyles[size])}>
+          <span className={clsx("shrink-0 flex justify-center items-center", iconSizeStyles[size])}>
             {rightIcon}
           </span>
         )}

@@ -7,6 +7,7 @@ export type Me = {
   avatar: string;
   mobile: string;
   is_profile_completed: boolean;
+  is_owner: boolean;
 };
 
 export type MeStatus = "unknown" | "guest" | "authenticated";

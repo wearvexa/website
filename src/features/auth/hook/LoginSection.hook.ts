@@ -20,7 +20,11 @@ const useLoginSection = () => {
 
   useEffect(() => {
     if (me !== null && getAccessToken()) {
-      router.replace("/profile");
+      if (me.is_owner) {
+        router.replace("/admin");
+      }else {
+        router.replace("/profile");
+      }
     }
   }, [me])
 
@@ -47,6 +51,7 @@ const useLoginSection = () => {
           const response = await api.post<{
             access_token: string;
             is_profile_completed: boolean;
+            is_owner: boolean;
           }>("/auth/otp/verify", e);
 
           if (response.message) {
@@ -54,6 +59,11 @@ const useLoginSection = () => {
           }
 
           setAccessToken(response?.data?.access_token);
+
+          if (response?.data?.is_owner) {
+            router.push("/admin");
+            return;
+          }
 
           if (!response?.data?.is_profile_completed) {
             router.replace("/complete-profile");

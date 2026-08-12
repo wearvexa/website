@@ -6,6 +6,7 @@ import {
   MessageCircleMore,
   PenLine,
   ShoppingBasket,
+  User,
 } from "lucide-react";
 import { toPersianDigits } from "@/lib/toPersianDigits";
 import { useMeStore } from "@/stores/useMeStore";
@@ -49,6 +50,18 @@ const ProfileSection = () => {
         </div>
       </div>
       <div className={"flex flex-col"}>
+        <Link
+          href={"/admin"}
+          className={
+            "not-last:border-b border-gray-200 h-16 active:bg-gray-50 flex items-center justify-between px-6"
+          }
+        >
+          <div className={"flex gap-3 text-gray-700"}>
+            <User size={20} strokeWidth={1.5} />
+            <h5 className={"font-medium text-[15px]"}>پنل ادمین</h5>
+          </div>
+          <ChevronLeft size={22} className={"text-gray-700"} />
+        </Link>
         <Link
           href={"#"}
           className={

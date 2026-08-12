@@ -1,9 +1,14 @@
+"use client"
+
 import Image from "next/image";
 import EmptyBasket from "@public/images/empty-basket.png";
 import { Button } from "@/components/Button";
 import { ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const CartSection = () => {
+  const router = useRouter();
+
   return (
     <section className={"px-6 pt-6"}>
       <h2 className={"text-gray-700 font-bold text-lg"}>سبد خرید</h2>
@@ -21,7 +26,11 @@ const CartSection = () => {
             نگاهی به محصولات و استایل های ما بیندازید.
           </p>
         </div>
-        <Button className={"rounded-none"} rightIcon={<ArrowLeft />}>
+        <Button
+          onClick={() => router.push("/shop")}
+          className={"rounded-none"}
+          rightIcon={<ArrowLeft />}
+        >
           شروع خرید
         </Button>
       </div>
