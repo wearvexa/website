@@ -10,6 +10,8 @@ const Header = () => {
     <header className="h-16 bg-white border-b border-gray-200 flex flex-row-reverse px-10 justify-between">
       <div className={"flex items-center"}>
         <button
+          data-tooltip-id="tooltip"
+          data-tooltip-content="خروج از پنل"
           className={
             "size-10 border rounded-full flex justify-center items-center cursor-pointer border-gray-200 hover:bg-gray-100 text-gray-800 active:scale-98"
           }
@@ -20,7 +22,7 @@ const Header = () => {
       <div className={"flex items-center"}>
         <h4 className={"font-medium flex gap-2 text-gray-800 text-sm"}>
           <UserCog size={20} />
-          {`${me?.first_name} ${me?.last_name ?? ""}`}
+          {`${me?.first_name ?? ""} ${me?.last_name ?? ""}`}
         </h4>
       </div>
     </header>

@@ -9,7 +9,7 @@ import { MobileField } from "@/components/form/fields/MobileField";
 import {
   LoginStep,
   useLoginSection,
-} from "@/features/auth/hook/LoginSection.hook";
+} from "@/features/auth/hooks/LoginSection.hook";
 import { HiddenField } from "@/components/form/fields/HiddenField";
 import { verifySchema } from "@/validations/schemas/auth/verify-schema";
 

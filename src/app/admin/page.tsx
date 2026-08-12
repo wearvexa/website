@@ -1,5 +1,7 @@
-const Page = () => {
-  return <div className={""}></div>
-}
+import DashboardSection from "@/features/admin/dashboard/sections/DashboardSection";
 
-export default Page
+const Page = () => {
+  return <DashboardSection />;
+};
+
+export default Page;

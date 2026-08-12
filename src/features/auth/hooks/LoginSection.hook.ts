@@ -16,17 +16,13 @@ const useLoginSection = () => {
   const [step, setStep] = useState<LoginStep>(LoginStep.SendOtp);
   const [token, setToken] = useState("");
   const router = useRouter();
-  const me = useMeStore(state => state.me);
+  const me = useMeStore((state) => state.me);
 
   useEffect(() => {
     if (me !== null && getAccessToken()) {
-      if (me.is_owner) {
-        router.replace("/admin");
-      }else {
-        router.replace("/profile");
-      }
+      router.replace("/profile");
     }
-  }, [me])
+  }, [me]);
 
   const handleSubmit = async (e: LoginSchema | VerifySchema) => {
     switch (step) {
@@ -59,11 +55,6 @@ const useLoginSection = () => {
           }
 
           setAccessToken(response?.data?.access_token);
-
-          if (response?.data?.is_owner) {
-            router.push("/admin");
-            return;
-          }
 
           if (!response?.data?.is_profile_completed) {
             router.replace("/complete-profile");

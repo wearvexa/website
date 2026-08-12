@@ -4,7 +4,7 @@ import Form from "@/components/form/Form";
 import { Button } from "@/components/Button";
 import { completeProfileSchema } from "@/validations/schemas/auth/complete-profile-schema";
 import { TextField } from "@/components/form/fields/TextField";
-import { useCompleteProfileSection } from "@/features/auth/hook/CompleteProfileSection.hook";
+import { useCompleteProfileSection } from "@/features/auth/hooks/CompleteProfileSection.hook";
 import { AvatarField } from "@/components/form/fields/AvatarField";
 
 const CompleteProfileSection = () => {
