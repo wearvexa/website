@@ -4,7 +4,6 @@ import SectionTitle from "@/components/SectionTitle";
 import { RefreshCcw } from "lucide-react";
 import SmallButton from "@/components/SmallButton";
 import { useDashboardSection } from "@/features/admin/dashboard/hooks/DashboardSection.hook";
-import { discoverValidationDepths } from "next/dist/server/app-render/instant-validation/instant-validation";
 import VexaLoading from "@/components/VexaLoading";
 
 const DashboardSection = () => {
@@ -28,7 +27,7 @@ const DashboardSection = () => {
           <RefreshCcw className="rotate-180" size={18} />
         </SmallButton>
       </SectionTitle>
-      <div className={"grid grid-cols-4"}>
+      <div className={"grid grid-cols-4 gap-4"}>
         <article className="bg-white rounded-xl border border-gray-200 flex flex-col justify-between gap-4 p-5">
           <div className="flex items-start justify-between gap-4">
             <div>
@@ -41,6 +40,48 @@ const DashboardSection = () => {
           </div>
           <p className="text-sm leading-6 text-gray-500">
             ۰ کاربر جدید در این ماه
+          </p>
+        </article>
+        <article className="bg-white rounded-xl border border-gray-200 flex flex-col justify-between gap-4 p-5">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-sm font-medium text-gray-500">محصولات</p>
+              <p className="mt-2 text-3xl font-bold text-gray-900">۰</p>
+            </div>
+            <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-black">
+              آمار
+            </span>
+          </div>
+          <p className="text-sm leading-6 text-gray-500">
+            ۰ محصول جدید در این ماه
+          </p>
+        </article>
+        <article className="bg-white rounded-xl border border-gray-200 flex flex-col justify-between gap-4 p-5">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-sm font-medium text-gray-500">فروش</p>
+              <p className="mt-2 text-3xl font-bold text-gray-900">۰</p>
+            </div>
+            <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-black">
+              آمار
+            </span>
+          </div>
+          <p className="text-sm leading-6 text-gray-500">
+            ۰ فروش در این ماه
+          </p>
+        </article>
+        <article className="bg-white rounded-xl border border-gray-200 flex flex-col justify-between gap-4 p-5">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-sm font-medium text-gray-500">نظرات</p>
+              <p className="mt-2 text-3xl font-bold text-gray-900">۰</p>
+            </div>
+            <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-black">
+              آمار
+            </span>
+          </div>
+          <p className="text-sm leading-6 text-gray-500">
+            ۰ نظر جدید در این ماه
           </p>
         </article>
       </div>
